@@ -1,6 +1,6 @@
-import { createServer } from './utils/server'
+import { createApp } from './app'
 
-createServer()
+createApp()
   .then(server => {
     server.listen(3000, () => {
       console.info(`Listening on http://localhost:3000`)
