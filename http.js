@@ -4,6 +4,7 @@ const http = require('http');
 // this is different to ruby or python which have a middle layer or specification to plug and play different application servers together with applications made by various frameworks:
 // https://medium.com/analytics-vidhya/what-is-wsgi-web-server-gateway-interface-ed2d290449e
 // http://blog.gauravchande.com/what-is-rack-in-ruby-rails
+// http://blog.plataformatec.com.br/2012/06/why-your-web-framework-should-not-adopt-rack-api/
 http.createServer(function (req, res) {
   res.write('Hello World!');
   res.end();
