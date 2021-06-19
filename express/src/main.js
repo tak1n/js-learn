@@ -1,4 +1,10 @@
-const app = require('./app')
+'use strict'
+
+// ESM
+import app from './app.js'
+
+// CJS
+// const app = require('./app.js')
 
 const port = process.env.PORT || 3000
 

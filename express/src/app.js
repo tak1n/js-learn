@@ -1,4 +1,10 @@
-const express = require('express');
+'use strict'
+
+// ESM
+import express from 'express';
+
+// CJS
+// const express = require('express');
 
 const app = express();
 
@@ -10,4 +16,8 @@ app.get('/ping', (req, res) => {
   res.json('pong');
 });
 
-module.exports = app
+// ESM
+export default app;
+
+// CJS
+// module.exports = app

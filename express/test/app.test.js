@@ -1,5 +1,12 @@
-const app = require('../src/app')
-const request = require('supertest')
+'use strict'
+
+// ESM
+import app from '../src/app'
+import request from 'supertest'
+
+// CJS
+// const app = require('../src/app.js')
+// const request = require('supertest')
 
 describe('App', () => {
   describe('GET /', () => {

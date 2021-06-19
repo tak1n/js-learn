@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "start": "nodemon src/main.js"
   },
   "keywords": [],
@@ -20,6 +21,7 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "rootDir": "test"
+    "rootDir": "test",
+    "transform": {}
   }
 }
