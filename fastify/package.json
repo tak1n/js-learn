@@ -1,0 +1,29 @@
+{
+  "name": "fastify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon src/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "boom": "^7.3.0",
+    "fastify": "^3.18.0",
+    "mongoose": "^5.12.14"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "rootDir": "test",
+    "transform": {}
+  },
+  "devDependencies": {
+    "jest": "^27.0.4",
+    "nodemon": "^2.0.7",
+    "pino-pretty": "^5.0.2",
+    "supertest": "^6.1.3"
+  }
+}
