@@ -5,7 +5,7 @@ import { Job } from 'bull';
 export class WorkerService {
   @Process()
   async transcode(job: Job<unknown>) {
-    console.log(`Processing job ${job.id}`);
-    console.log(`Job data: ${job.data}`);
+    console.log(`Processing job ${job.id} with data:`);
+    console.dir(job.data);
   }
 }
