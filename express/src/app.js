@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // ESM
 import express from 'express';
