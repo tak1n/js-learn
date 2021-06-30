@@ -1,5 +1,5 @@
-import express from 'express'
-import { Express } from 'express'
+import express from 'express';
+import { Express } from 'express';
 
 export function createApp(): Express {
   const server = express();

@@ -1,26 +1,24 @@
-import { createApp } from '../src/app'
-import request from 'supertest'
+import { createApp } from '../src/app';
+import request from 'supertest';
 
-const app = createApp()
+const app = createApp();
 
 describe('App', () => {
   describe('GET /', () => {
-    it('should respond with a 200 response and a \'Hello World\' body', async () => {
-      const { status, body } = await request(app)
-        .get('/');
+    it("should respond with a 200 response and a 'Hello World' body", async () => {
+      const { status, body } = await request(app).get('/');
 
       expect(status).toBe(200);
       expect(body).toStrictEqual({ message: 'Hello World!!!' });
     });
   });
 
-  describe("GET /ping", () => {
+  describe('GET /ping', () => {
     it('responds with pong and HTTP status 200', async () => {
-      const { status, body } = await request(app)
-        .get('/ping');
+      const { status, body } = await request(app).get('/ping');
 
       expect(status).toBe(200);
       expect(body).toStrictEqual('pong');
-    })
-  })
-})
+    });
+  });
+});
