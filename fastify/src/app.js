@@ -1,16 +1,16 @@
-'use strict'
+'use strict';
 
 const fastify = require('fastify');
 const PORT = process.env.PORT || 3000;
 
-const build = (opts={}) => {
-    const app = fastify(opts);
+const build = (opts = {}) => {
+  const app = fastify(opts);
 
-    app.get('/', async (request, reply) => {
-        return { message: 'Hello World!!' };
-    })
+  app.get('/', async (request, reply) => {
+    return { message: 'Hello World!!' };
+  });
 
-    return app;
-}
- 
+  return app;
+};
+
 module.exports = build;

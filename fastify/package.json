@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "nodemon src/main.js"
+    "start": "nodemon src/main.js",
+    "format": "prettier --write \"src/**/*.{ts,js}\" \"test/**/*.{ts,js}\""
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
     "jest": "^27.0.4",
     "nodemon": "^2.0.7",
     "pino-pretty": "^5.0.2",
+    "prettier": "^2.3.2",
     "supertest": "^6.1.3"
   }
 }

@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const build = require('../src/app.js');
 const request = require('supertest');
@@ -7,7 +7,7 @@ const app = build();
 
 describe('App', () => {
   beforeAll(async () => {
-      await app.ready();
+    await app.ready();
   });
 
   afterAll(() => {
@@ -15,10 +15,10 @@ describe('App', () => {
   });
 
   describe('GET / without supertest', () => {
-    it('should respond with a 200 response and a \'Hello World\' body', async () => {
+    it("should respond with a 200 response and a 'Hello World' body", async () => {
       const { statusCode, body } = await app.inject({
         method: 'GET',
-        url: '/'
+        url: '/',
       });
 
       expect(statusCode).toBe(200);
@@ -27,9 +27,9 @@ describe('App', () => {
   });
 
   describe('GET /', () => {
-    it('should respond with a 200 response and a \'Hello World\' body', async () => {
-      const { status, body } = await request(app.server).get('/')
-                                    
+    it("should respond with a 200 response and a 'Hello World' body", async () => {
+      const { status, body } = await request(app.server).get('/');
+
       expect(status).toBe(200);
       expect(body).toStrictEqual({ message: 'Hello World!!' });
     });
