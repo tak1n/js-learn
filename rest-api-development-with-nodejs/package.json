@@ -1,0 +1,22 @@
+{
+  "name": "rest-api-development-with-nodejs",
+  "version": "1.0.0",
+  "description": "Going through examples of the book REST API Development with Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tak1n/js-learn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tak1n/js-learn/issues"
+  },
+  "homepage": "https://github.com/tak1n/js-learn#readme",
+  "dependencies": {
+    "@hapi/hapi": "^20.1.5"
+  }
+}
