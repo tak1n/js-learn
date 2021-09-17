@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/tak1n/js-learn#readme",
   "dependencies": {
-    "@hapi/hapi": "^20.1.5"
+    "@hapi/hapi": "^20.1.5",
+    "restify": "^8.5.1"
   }
 }
