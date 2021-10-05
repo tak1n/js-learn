@@ -51,7 +51,7 @@ export class TaskRepository extends Repository<Task> {
       );
     }
 
-    query.andWhere('task.userIdABC = :userId', { userId: user.id });
+    query.andWhere('task.userId = :userId', { userId: user.id });
 
     try {
       const tasks = await query.getMany();
