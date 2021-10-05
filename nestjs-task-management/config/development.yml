@@ -1,0 +1,8 @@
+db:
+  host: 'localhost'
+  username: 'js-learn'
+  password: 'js-learn'
+  synchronize: true
+
+jwt:
+  secret: 'topSecret'
