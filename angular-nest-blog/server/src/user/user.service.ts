@@ -3,10 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AuthService } from '../auth/auth.service';
 import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { UserDto } from './dto/user.dto';
 import { UserCreateDto } from './dto/user-create.dto';
-import * as bcrypt from 'bcrypt';
 import { UserUpdateDto } from './dto/user-update.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -25,12 +24,11 @@ export class UserService {
     return user;
   }
 
-  async findOne(id: string): Promise<UserDto> {
-    const user = await this.findUser(id);
-    return UserDto.toDTO(user);
+  findOne(id: string): Promise<UserEntity> {
+    return this.findUser(id);
   }
 
-  async create(userCreateDto: UserCreateDto): Promise<UserDto> {
+  async create(userCreateDto: UserCreateDto): Promise<UserEntity> {
     const user = new UserEntity();
 
     user.email = userCreateDto.email;
@@ -44,20 +42,20 @@ export class UserService {
 
     user.save();
 
-    return UserDto.toDTO(user);
+    return user;
   }
 
-  async findAll(): Promise<UserDto[]> {
+  async findAll(): Promise<UserEntity[]> {
     const users = await this.userRepo.find();
 
-    return users.map((user) => UserDto.toDTO(user));
+    return users;
   }
 
   deleteOne(id: string): Promise<any> {
     return this.userRepo.delete(id);
   }
 
-  async update(id: string, userUpdateDto: UserUpdateDto): Promise<UserDto> {
+  async update(id: string, userUpdateDto: UserUpdateDto): Promise<UserEntity> {
     const user = await this.findUser(id);
 
     if (userUpdateDto.name) {
@@ -72,6 +70,6 @@ export class UserService {
 
     user.save();
 
-    return UserDto.toDTO(user);
+    return user;
   }
 }
