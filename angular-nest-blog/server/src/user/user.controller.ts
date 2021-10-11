@@ -8,7 +8,9 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { User } from './user.interface';
+import { UserCreateDto } from './dto/user-create.dto';
+import { UserUpdateDto } from './dto/user-update.dto';
+import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
 
 @Controller('users')
@@ -16,26 +18,26 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get(':id')
-  findOne(@Param('id', ParseUUIDPipe) id: string): Promise<User> {
+  findOne(@Param('id', ParseUUIDPipe) id: string): Promise<UserDto> {
     return this.userService.findOne(id);
   }
 
   @Get()
-  findAll(): Promise<User[]> {
+  findAll(): Promise<UserDto[]> {
     return this.userService.findAll();
   }
 
   @Post()
-  create(@Body() user: User): Promise<User> {
-    return this.userService.create(user);
+  create(@Body() userCreateDto: UserCreateDto): Promise<UserDto> {
+    return this.userService.create(userCreateDto);
   }
 
   @Patch(':id')
   update(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() user: User,
-  ): Promise<User> {
-    return this.userService.update(id, user);
+    @Body() userUpdateDto: UserUpdateDto,
+  ): Promise<UserDto> {
+    return this.userService.update(id, userUpdateDto);
   }
 
   @Delete(':id')

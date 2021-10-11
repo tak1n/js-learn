@@ -1,16 +1,21 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AuthService } from '../auth/auth.service';
 import { Repository } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { User } from './user.interface';
+import { UserDto } from './dto/user.dto';
+import { UserCreateDto } from './dto/user-create.dto';
+import * as bcrypt from 'bcrypt';
+import { UserUpdateDto } from './dto/user-update.dto';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(UserEntity) private userRepo: Repository<UserEntity>,
+    private authService: AuthService,
   ) {}
 
-  async findOne(id: string): Promise<User> {
+  async findUser(id: string): Promise<UserEntity> {
     const user = await this.userRepo.findOne(id);
 
     if (!user) {
@@ -20,26 +25,53 @@ export class UserService {
     return user;
   }
 
-  create(user: User): Promise<User> {
-    return this.userRepo.save(user);
+  async findOne(id: string): Promise<UserDto> {
+    const user = await this.findUser(id);
+    return UserDto.toDTO(user);
   }
 
-  findAll(): Promise<User[]> {
-    return this.userRepo.find();
+  async create(userCreateDto: UserCreateDto): Promise<UserDto> {
+    const user = new UserEntity();
+
+    user.email = userCreateDto.email;
+    user.name = userCreateDto.name;
+    user.username = userCreateDto.username;
+    user.salt = await bcrypt.genSalt();
+    user.password = await this.authService.hashPassword(
+      userCreateDto.password,
+      user.salt,
+    );
+
+    user.save();
+
+    return UserDto.toDTO(user);
+  }
+
+  async findAll(): Promise<UserDto[]> {
+    const users = await this.userRepo.find();
+
+    return users.map((user) => UserDto.toDTO(user));
   }
 
   deleteOne(id: string): Promise<any> {
     return this.userRepo.delete(id);
   }
 
-  async update(id: string, user: User): Promise<User> {
-    const storedUser = await this.findOne(id);
+  async update(id: string, userUpdateDto: UserUpdateDto): Promise<UserDto> {
+    const user = await this.findUser(id);
 
-    storedUser.name = user.name;
-    storedUser.username = user.username;
+    if (userUpdateDto.name) {
+      user.name = userUpdateDto.name;
+    }
+    if (userUpdateDto.username) {
+      user.username = userUpdateDto.username;
+    }
+    if (userUpdateDto.email) {
+      user.email = userUpdateDto.email;
+    }
 
-    this.userRepo.save(storedUser);
+    user.save();
 
-    return storedUser;
+    return UserDto.toDTO(user);
   }
 }
