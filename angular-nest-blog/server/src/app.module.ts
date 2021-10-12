@@ -7,14 +7,12 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 
 const environment = process.env.NODE_ENV || 'development';
-const envFilePath =
-  environment === 'development' ? `.env` : `.env.${environment}`;
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: envFilePath,
+      envFilePath: `${process.cwd()}/config/.env.${environment}`,
     }),
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
