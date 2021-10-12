@@ -5,14 +5,12 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 const environment = process.env.NODE_ENV || 'development';
-const envFilePath =
-  environment === 'development' ? `.env` : `.env.${environment}`;
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: envFilePath,
+      envFilePath: `${process.cwd()}/config/.env.${environment}`,
     }),
     TypeOrmModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
