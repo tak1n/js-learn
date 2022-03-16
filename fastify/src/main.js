@@ -3,7 +3,7 @@
 const server = require('./app')({
   logger: {
     level: 'info',
-    prettyPrint: true,
+    prettyPrint: false,
   },
 });
 
